@@ -1,0 +1,257 @@
+/* ========= COLOR SYSTEM ========= */
+:root {
+  --bg: #fff7d6;
+  --sidebar: #fde68a;
+  --editor: #fef3c7;
+  --card:  #e0b770;
+  --panel: #fff1b8;
+
+  --border: #facc15;
+  --text: #78350f;
+  --muted: #92400e;
+
+  --primary: #f59e0b;
+  --accent: #84cc16;
+  --danger: #dc2626;
+}
+
+/* ========= DARK MODE ========= */
+body.dark {
+  --bg: #1a1025;
+  --sidebar: #241332;
+  --editor: #2d1448;
+  --card: #33194f;
+  --panel: #3b1d5f;
+
+  --border: #6d28d9;
+  --text: #f3e8ff;
+  --muted: #d8b4fe;
+
+  --primary: #a78bfa;
+  --accent: #c4b5fd;
+  --danger: #fb7185;
+}
+
+/* ========= RESET ========= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* ========= BODY ========= */
+body {
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ========= LAYOUT ========= */
+.app {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 100vh;
+}
+
+/* ========= SIDEBAR ========= */
+.sidebar {
+  background: var(--sidebar);
+  padding: 22px;
+}
+
+.sidebar h2 {
+  font-size: 18px;
+  margin-bottom: 18px;
+}
+
+.note-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Sidebar item (note title) */
+.sidebar-item {
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: var(--panel);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.sidebar-item:hover {
+  background: var(--editor);
+  transform: translateX(6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* ========= MAIN ========= */
+.main {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: 18px;
+  padding: 22px;
+}
+
+/* ========= TOPBAR ========= */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topbar button {
+  background: var(--panel);
+  border: none;
+  padding: 8px 18px;
+  border-radius: 999px;
+  color: var(--text);
+  cursor: pointer;
+}
+
+/* ========= EDITOR ========= */
+#editor {
+  background: var(--editor);
+  border-radius: 28px;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+#editor h3 {
+  font-size: 18px;
+  margin-bottom: 14px;
+}
+
+#titleInput {
+  border: none;
+  border-bottom: 2px solid var(--primary);
+  padding: 10px 0;
+  margin-bottom: 16px;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+}
+
+#noteInput {
+  border: none;
+  resize: none;
+  font-size: 14px;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+  min-height: 90px;
+}
+
+/* Add button */
+#addBtn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* ========= NOTES GRID ========= */
+#notesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+/* ========= NOTE CARD ========= */
+.note-card {
+  background: var(--card);
+  border-radius: 22px;
+  padding: 16px;
+  min-height: 160px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.note-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+}
+
+.note-card h4 {
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.note-card p {
+  font-size: 13px;
+  color: var(--muted);
+  flex: 1;
+}
+
+/* ========= NOTE ACTIONS ========= */
+.note-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Edit button */
+.edit {
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--accent);
+  background: rgb(120, 193, 120);
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* Delete button */
+.delete {
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--danger);
+  background: rgb(215, 86, 86);
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* ========= EXPANDED NOTE (optional future) ========= */
+.note-card.big {
+  position: fixed;
+  inset: 10%;
+  z-index: 10;
+}
+
+/* ========= OVERLAY ========= */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+}
+
+.overlay.show {
+  display: block;
+}
